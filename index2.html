@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Component</title>
+</head>
+<body>
+	<div id="app">
+    <!-- <input type="text" v-model="inputText"/>
+    <hello-world message="Hello Vue" add="additonal" v-bind:message2="inputText"></hello-world> -->
+      <test-data v-for="item in items" v-bind:item="item.id" v-bind:key="item.id"></test-data>
+	</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+// Vue.component('hello-world',{
+//   template: '<h1>Hello World and {{ message }} and {{ add }} and {{ message2 }}</h1>',
+//   props: ['message','add','message2']
+// })
+
+Vue.component('test-data', {
+  template: '<li>{{ item }}</li>',
+  props: ['item']
+})
+
+var app = new Vue({
+  el: '#app',
+  data: { 
+    inputText:'',
+    items: [
+      {id:1},
+      {id:2},
+      {id:3}
+    ]
+  }
+})
+
+</script>	
+</body>
+</html>
