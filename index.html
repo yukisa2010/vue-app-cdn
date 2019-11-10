@@ -7,24 +7,22 @@
   </head>
   <body>
     <div id="app">
-      <form-item v-bind:value="newItem"></form-item>
-      <ul>
+      <form-item v-bind:item="newItem"></form-item>
         <todo-item 
           v-for="(item, index) in items" 
           v-bind="item" 
           v-if="!item.state"
-          v-bind:key="item.id"
         >
-        </todo-items>
+        </todo-item>
         <todo-item 
           v-for="(item, index) in items" 
           v-bind="item" 
           v-if="item.state"
-          v-bind:key="item.id"
         >
-        </todo-items>  
-      </ul>
-      <pre>{{$data}}</pre>
+        </todo-item>
+
+
+        <pre>{{$data}}</pre>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script type="text/javascript" src="index.js"></script>

@@ -31,12 +31,13 @@ Vue.component('todo-item', {
 Vue.component('form-item', {
   template: `
     <form v-on:submit.prevent>
-      <input type="text" v-bind:value="value" v-on:change="changeText($event)"/>
+      <input type="text" :value="item" @change="changeText($event, item)"/>
       <button v-on:click="addItem">Add</button>    
     </form>`,
-  props: ['value'],
+  props: ['item'],
   methods: {
-    changeText: function($event, value) {
+    changeText: function($event) {
+      console.log($event)
       app.newItem = $event.target.value
     },
     addItem: function() {
@@ -44,15 +45,16 @@ Vue.component('form-item', {
         return
       }
       //maxIdを取得
-      let maxId;
+      let maxId = 0;
       app.items.forEach(function(e) {
+        console.log(e.id)
         if(maxId < e.id) {
           maxId = e.id
         }
       })
       //maxId + 1でobj作成
       var newObj = {
-        id: maxId, todo: app.newItem, state: false
+        id: maxId + 1, todo: app.newItem, state: false
       }
       //itemsにセット
       app.items.push(newObj)
@@ -63,26 +65,15 @@ Vue.component('form-item', {
 
 var app = new Vue({
   el: '#app',
-  data: {
-      items: [
-        { id:1, todo: 'aaa', state: false },
-        { id:2, todo: 'bbb', state: false },
-        { id:3, todo: 'ccc', state: false },
-      ],
-      newItem: ''
-  },
-  })
+  data: function(){
+      return {
+        items: [
+          { id:1, todo: 'aaa', state: false },
+          { id:2, todo: 'bbb', state: false },
+          { id:3, todo: 'ccc', state: false },
+        ],
+        newItem: ''
+      }
+  }
+})
 
-  // data: {
-  //     newItem: ''  
-  // },
-  // watch: {
-  //   items: function(oldValue, newValue) {
-  //     console.log('old:', JSON.stringify(oldValue))
-  //     console.log('new:', JSON.stringify(newValue))
-  //   },
-  //   deep: true,
-  //   immediate: true
-  // },
-  // methods: {
-  // }
