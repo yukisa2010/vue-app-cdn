@@ -8,18 +8,18 @@
   <body>
     <div id="app">
       <form-item v-bind:item="newItem"></form-item>
+        <!--未完了のリスト-->
         <todo-item 
           v-for="(item, index) in items" 
           v-bind="item" 
           v-if="!item.state"
-        >
-        </todo-item>
+        ></todo-item>
+        <!--完了のリスト-->
         <todo-item 
           v-for="(item, index) in items" 
           v-bind="item" 
           v-if="item.state"
-        >
-        </todo-item>
+        ></todo-item>
 
 
         <pre>{{$data}}</pre>
