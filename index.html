@@ -7,24 +7,12 @@
   </head>
   <body>
     <div id="app">
-      <form v-on:submit.prevent>
+      <!-- <form v-on:submit.prevent>
         <input type="text" v-model="newItem"/>
-        <button v-on:click="addItem">追加</button>    
-      </form>
-      <ul v-cloak>
-        <todo-item 
-          v-for="(item, index) in items" 
-          v-bind:display="!item.done"
-          v-bind:todo="item.todo"
-          v-bind:done="item.done"
-          v-bind:key="index"
-        ></todo-item>
-        <li v-for="(item, index) in items" v-if="item.state"  v-bind:class="{ done: item.state }">
-            <input type="checkbox" v-model="item.state">
-            {{ item.todo }}
-            <button v-on:click="restoreItem(index)">restore</button>
-        </li>
-      </ul>
+        <button v-on:click="addItem">Add</button>    
+      </form> -->
+      <todo-items v-for="(item, index) in items" v-bind="item" v-on:input="app.$emit('input', !item.state)"></todo-items>
+      <pre>{{$data}}</pre>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script type="text/javascript" src="index.js"></script>
