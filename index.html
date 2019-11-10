@@ -3,6 +3,7 @@
   <head>
     <title>Todoアプリ</title>
     <link rel="stylesheet" href="styles.css"/>
+    
   </head>
   <body>
     <div id="app">
@@ -10,7 +11,7 @@
         <input type="text" v-model="newItem"/>
         <button v-on:click="addItem">追加</button>    
       </form>
-      <ul>
+      <ul v-cloak>
         <todo-item 
           v-for="(item, index) in items" 
           v-bind:display="!item.done"
