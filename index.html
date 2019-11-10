@@ -7,11 +7,23 @@
   </head>
   <body>
     <div id="app">
-      <!-- <form v-on:submit.prevent>
-        <input type="text" v-model="newItem"/>
-        <button v-on:click="addItem">Add</button>    
-      </form> -->
-      <todo-items v-for="(item, index) in items" v-bind="item" v-on:input="app.$emit('input', !item.state)"></todo-items>
+      <form-item v-bind:value="newItem"></form-item>
+      <ul>
+        <todo-item 
+          v-for="(item, index) in items" 
+          v-bind="item" 
+          v-if="!item.state"
+          v-bind:key="item.id"
+        >
+        </todo-items>
+        <todo-item 
+          v-for="(item, index) in items" 
+          v-bind="item" 
+          v-if="item.state"
+          v-bind:key="item.id"
+        >
+        </todo-items>  
+      </ul>
       <pre>{{$data}}</pre>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
